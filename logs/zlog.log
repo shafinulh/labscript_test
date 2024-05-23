@@ -1,0 +1,467 @@
+[2024-05-22 16:48:51,229] INFO logging to C:\Users\shafinul\labscript-suite\logs\zlog.log
+[2024-05-22 16:48:51,230] INFO This is zlog server, running on tcp://*:7340
+[2024-05-22 16:48:51,518] INFO [127.0.0.1] said hello
+[2024-05-22 16:48:51,523] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:48:51,526] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:48:51,526] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:48:55,303] INFO [127.0.0.1] said hello
+[2024-05-22 16:48:55,303] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:48:55,303] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:48:56,468] INFO [127.0.0.1] said hello
+[2024-05-22 16:48:56,468] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:48:56,468] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:00,334] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:00,335] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:01,515] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:01,515] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:05,401] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:05,406] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:05,717] INFO [127.0.0.1] Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:07,944] INFO [127.0.0.1] said hello
+[2024-05-22 16:49:07,946] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:07,949] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:10,412] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:10,413] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:10,414] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:10,414] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:11,790] INFO [127.0.0.1] said hello
+[2024-05-22 16:49:11,793] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:11,794] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:12,911] INFO [127.0.0.1] said hello
+[2024-05-22 16:49:12,911] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:12,921] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:16,832] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:16,832] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:17,947] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:17,947] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:25,364] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:25,364] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:25,364] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:30,370] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:30,370] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:35,374] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:35,375] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:35,375] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:40,384] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:40,384] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:45,385] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:45,385] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:45,385] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:50,395] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:50,395] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:55,406] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:55,406] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:55,406] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:56,846] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:56,846] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:59,696] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:49:59,706] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:05,840] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:05,840] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:05,867] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:05,867] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:06,526] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:06,527] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:06,527] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:10,914] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:10,914] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:15,924] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:15,924] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:15,924] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:20,924] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:20,924] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:25,933] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:25,933] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:25,933] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:30,927] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:30,927] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:40,821] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:40,821] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:40,821] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:40,941] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:40,941] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:45,948] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:45,948] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:45,948] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:50,955] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:50,955] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:55,981] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:55,981] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:50:55,981] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:00,977] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:00,977] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:05,992] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:05,993] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:05,993] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:10,980] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:10,980] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:15,987] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:15,987] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:15,987] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:20,998] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:20,999] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:26,007] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:26,007] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:26,007] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:31,002] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:31,002] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:36,009] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:36,009] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:36,009] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:41,018] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:41,018] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:46,025] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:46,026] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:46,027] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:51,029] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:51,030] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:56,045] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:56,046] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:56,046] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:57,416] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:51:57,417] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:06,042] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:06,043] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:06,043] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:11,046] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:11,046] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:19,524] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:19,524] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:19,524] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:21,061] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:21,061] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:26,066] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:26,067] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:26,067] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:31,072] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:31,072] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:36,646] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:36,647] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:36,647] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:41,079] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:41,079] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:44,478] INFO [127.0.0.1] said hello
+[2024-05-22 16:52:44,495] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:52:44,495] INFO Opening C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:52:44,495] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:52:46,081] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:46,081] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:46,081] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:49,494] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:52:49,494] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:52:49,494] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:52:51,085] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:51,085] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:54,128] INFO Opening C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:52:54,128] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:52:56,095] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:56,095] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:56,095] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:52:59,698] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:52:59,698] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:52:59,698] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:53:01,096] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:01,096] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:06,100] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:06,101] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:06,101] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:11,111] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:11,111] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:14,658] INFO Opening C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:53:14,658] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:53:17,942] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:17,942] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:17,942] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:19,682] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:53:19,682] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:53:19,682] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:53:21,117] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:21,117] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:27,492] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:27,498] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:27,785] INFO [127.0.0.1] Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:30,004] INFO [127.0.0.1] said hello
+[2024-05-22 16:53:30,004] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:30,004] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:32,510] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:32,510] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:32,510] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:32,510] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:34,290] INFO [127.0.0.1] said hello
+[2024-05-22 16:53:34,290] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:34,290] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:34,350] INFO [127.0.0.1] said hello
+[2024-05-22 16:53:34,350] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:34,350] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:39,329] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:53:39,329] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:54:56,722] INFO Opening C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:54:56,722] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:55:01,729] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:55:01,730] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:55:01,731] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:55:06,035] INFO [127.0.0.1] said hello
+[2024-05-22 16:55:06,035] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 16:55:07,316] INFO Opening C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:55:07,316] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:55:07,386] INFO Opening C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 16:55:07,386] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 16:55:12,326] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:55:12,326] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:55:12,326] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:55:15,689] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 16:55:15,689] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 16:55:15,689] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 16:56:33,351] INFO Opening C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 16:56:38,312] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:38,312] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:39,441] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:39,441] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:39,441] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:42,766] INFO [127.0.0.1] said hello
+[2024-05-22 16:56:42,766] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:42,766] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:42,766] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:47,106] INFO [127.0.0.1] said hello
+[2024-05-22 16:56:47,116] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:47,116] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:47,226] INFO [127.0.0.1] said hello
+[2024-05-22 16:56:47,226] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:47,226] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:52,136] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 16:56:52,136] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:01:37,446] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:01:37,446] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:01:38,066] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:01:38,066] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:01:38,066] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:02:37,570] INFO [127.0.0.1] said hello
+[2024-05-22 17:02:37,570] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:02:37,580] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:02:37,580] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:02:41,922] INFO [127.0.0.1] said hello
+[2024-05-22 17:02:41,922] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:02:41,922] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:02:42,052] INFO [127.0.0.1] said hello
+[2024-05-22 17:02:42,052] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:02:42,052] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:02:46,964] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:02:46,964] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:08:44,020] INFO [127.0.0.1] said hello
+[2024-05-22 17:08:44,020] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:08:44,030] INFO Opening C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:08:44,030] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:08:49,037] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:08:49,037] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:08:49,037] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:08:57,484] INFO Opening C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:08:57,484] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:09:01,586] INFO [127.0.0.1] said hello
+[2024-05-22 17:09:01,596] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 17:09:03,155] INFO Opening C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 17:09:03,155] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 17:09:04,316] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:09:04,316] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:09:04,316] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:09:09,552] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 17:09:09,552] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 17:09:09,552] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 17:09:51,365] INFO [127.0.0.1] said hello
+[2024-05-22 17:09:51,365] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:09:51,375] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:09:52,943] INFO [127.0.0.1] said hello
+[2024-05-22 17:09:52,953] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:09:52,953] INFO New client (total: 4) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:09:53,586] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:09:53,586] INFO Client done (remaining: 3) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:09:56,385] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:09:56,385] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:09:59,834] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:00,174] INFO [127.0.0.1] Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:04,857] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:04,857] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:04,857] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:04,858] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:04,858] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:07,277] INFO [127.0.0.1] said hello
+[2024-05-22 17:10:07,287] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:07,287] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:07,287] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:11,570] INFO [127.0.0.1] said hello
+[2024-05-22 17:10:11,570] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:11,570] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:11,730] INFO [127.0.0.1] said hello
+[2024-05-22 17:10:11,730] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:11,730] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:16,592] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:16,592] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:29,650] INFO Opening C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:10:29,650] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:10:29,695] INFO Opening C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 17:10:29,695] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 17:10:36,990] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:10:36,990] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:10:36,990] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\runmanager.log
+[2024-05-22 17:10:37,021] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 17:10:37,021] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 17:10:37,021] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\runviewer.log
+[2024-05-22 17:10:41,322] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:41,662] INFO [127.0.0.1] Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:46,330] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:46,330] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:46,330] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:46,330] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:46,330] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:46,551] INFO [127.0.0.1] said hello
+[2024-05-22 17:10:46,551] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:46,551] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:46,551] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:53,618] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:53,618] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:53,618] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:55,601] INFO [127.0.0.1] said hello
+[2024-05-22 17:10:55,611] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:55,611] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:55,611] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:59,971] INFO [127.0.0.1] said hello
+[2024-05-22 17:10:59,971] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:10:59,981] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:11:00,021] INFO [127.0.0.1] said hello
+[2024-05-22 17:11:00,021] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:11:00,021] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:11:05,002] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:11:05,002] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:27:45,602] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:27:45,603] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:27:45,643] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:27:45,644] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:27:45,644] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:29:36,459] INFO [127.0.0.1] said hello
+[2024-05-22 17:29:36,469] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:29:36,469] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:29:36,469] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:29:40,850] INFO [127.0.0.1] said hello
+[2024-05-22 17:29:40,860] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:29:40,860] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:29:41,031] INFO [127.0.0.1] said hello
+[2024-05-22 17:29:41,031] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:29:41,041] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:29:45,865] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:29:45,865] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:30:04,123] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:30:04,124] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:30:04,124] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:30:04,126] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:30:04,126] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:33,204] INFO [127.0.0.1] said hello
+[2024-05-22 17:36:33,204] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:33,204] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:33,204] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:37,770] INFO [127.0.0.1] said hello
+[2024-05-22 17:36:37,773] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:37,773] INFO [127.0.0.1] said hello
+[2024-05-22 17:36:37,773] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:37,773] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:37,783] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:42,792] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:42,792] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:47,703] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:47,703] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:50,444] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:50,444] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:50,444] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:55,447] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:36:55,447] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:37:00,467] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:37:00,467] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:37:00,467] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:47:39,580] INFO [127.0.0.1] said hello
+[2024-05-22 17:47:39,580] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:47:39,590] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:47:39,590] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:47:44,142] INFO [127.0.0.1] said hello
+[2024-05-22 17:47:44,142] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:47:44,142] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:47:44,222] INFO [127.0.0.1] said hello
+[2024-05-22 17:47:44,222] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:47:44,222] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:47:49,145] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:47:49,145] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:57:35,889] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:57:35,889] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:57:35,920] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:57:35,920] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 17:57:35,920] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:02:34,098] INFO [127.0.0.1] said hello
+[2024-05-22 18:02:34,098] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:02:34,108] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:02:34,108] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:02:38,655] INFO [127.0.0.1] said hello
+[2024-05-22 18:02:38,655] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:02:38,655] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:02:38,723] INFO [127.0.0.1] said hello
+[2024-05-22 18:02:38,726] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:02:38,726] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:02:43,687] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:02:43,687] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:04:01,617] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:04:01,617] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:04:01,617] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:04:01,617] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 18:04:01,617] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:03,316] INFO logging to C:\Users\shafinul\labscript-suite\logs\zlog.log
+[2024-05-22 19:15:03,318] INFO This is zlog server, running on tcp://*:7340
+[2024-05-22 19:15:03,697] INFO [127.0.0.1] said hello
+[2024-05-22 19:15:03,702] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:03,704] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:03,705] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:09,488] INFO [127.0.0.1] said hello
+[2024-05-22 19:15:09,490] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:09,491] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:09,546] INFO [127.0.0.1] said hello
+[2024-05-22 19:15:09,548] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:09,549] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:14,507] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:14,508] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:14,756] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:14,757] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:14,817] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:14,818] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:14,818] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:16,964] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:16,965] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:21,977] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:21,978] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:21,978] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:22,830] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:22,830] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:25,784] INFO [127.0.0.1] said hello
+[2024-05-22 19:15:25,787] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:25,789] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:54,218] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:54,559] INFO [127.0.0.1] Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:59,224] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:59,224] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:59,225] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:59,225] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:59,225] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:59,863] INFO [127.0.0.1] said hello
+[2024-05-22 19:15:59,867] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:59,868] INFO Opening C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:15:59,868] INFO New client (total: 1) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:16:04,141] INFO [127.0.0.1] said hello
+[2024-05-22 19:16:04,142] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:16:04,143] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:16:04,272] INFO [127.0.0.1] said hello
+[2024-05-22 19:16:04,274] INFO [127.0.0.1] Access confirmed for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:16:04,274] INFO New client (total: 3) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:16:09,172] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-22 19:16:09,174] INFO Client done (remaining: 2) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-23 09:35:19,037] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-23 09:35:19,038] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-23 09:35:19,054] INFO New client (total: 2) for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-23 09:35:40,171] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-23 09:35:40,171] INFO Client done (remaining: 1) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-23 09:35:40,171] INFO Client timed out for C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-23 09:35:40,171] INFO Client done (remaining: 0) with C:\Users\shafinul\labscript-suite\logs\BLACS.log
+[2024-05-23 09:35:40,171] INFO No more clients, closing C:\Users\shafinul\labscript-suite\logs\BLACS.log

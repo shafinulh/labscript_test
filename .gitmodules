@@ -1,0 +1,3 @@
+[submodule "blacs"]
+	path = blacs
+	url = https://github.com/shafinulh/blacs.git
