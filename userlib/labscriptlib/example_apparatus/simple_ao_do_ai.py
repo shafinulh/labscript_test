@@ -1,6 +1,5 @@
 from labscript import *
 from labscript_devices.PulseBlasterUSB import PulseBlasterUSB
-from labscript_devices.DummyIntermediateDevice import DummyIntermediateDevice
 from labscript_devices.NI_DAQmx.labscript_devices import NI_PCIe_6363
 
 '''
@@ -37,10 +36,29 @@ DigitalOut(
     name='do1', parent_device=ni_6363, connection='port0/line1'
 )
 
-if __name__ == '__main__':
-    # Begin issuing labscript primitives
-    # start() elicits the commencement of the shot
-    start()
+# Analog Input Channels
+# AnalogIn(name="ai0", parent_device=ni_6363, connection='ai0')
+# AnalogIn(name="ai1", parent_device=ni_6363, connection='ai1')
 
-    # Stop the experiment shot with stop()
-    stop(1.0)
+'''
+Define the Experiment Logic
+'''
+t=0
+start()
+t+=0.01
+add_time_marker(t, "DO high", verbose=True)
+do0.go_high(t)
+t+=0.025
+add_time_marker(t, "Sending Analog Ramp", verbose=True)
+ao0.ramp(t=t, initial=0.0, final=1.0, duration=0.025, samplerate=1e3)
+end_val = t + 0.025
+ao0.constant(t=end_val, value=0)
+add_time_marker(t, "DO low", verbose=True)
+do0.go_low(t)
+t+=0.02
+do0.go_high(t)
+# ai0.acquire(label='measurement1', start_time=t, end_time=t+0.01)
+t+=0.01
+do0.go_low(t)
+t += 0.05
+stop(t)
