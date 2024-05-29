@@ -1,3 +1,6 @@
 [submodule "blacs"]
 	path = blacs
 	url = https://github.com/shafinulh/blacs.git
+[submodule "labscript-devices"]
+	path = labscript-devices
+	url = https://github.com/shafinulh/labscript-devices.git

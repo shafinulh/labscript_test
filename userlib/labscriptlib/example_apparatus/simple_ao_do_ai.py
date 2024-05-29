@@ -37,28 +37,63 @@ DigitalOut(
 )
 
 # Analog Input Channels
-# AnalogIn(name="ai0", parent_device=ni_6363, connection='ai0')
-# AnalogIn(name="ai1", parent_device=ni_6363, connection='ai1')
+AnalogIn(name="ai0", parent_device=ni_6363, connection='ai0')
+AnalogIn(name="ai1", parent_device=ni_6363, connection='ai1')
 
 '''
 Define the Experiment Logic
 '''
+
+def digital_output_stream():
+    t=0
+    t+=0.01
+    add_time_marker(t, "DO high", verbose=True)
+    do0.go_high(t)
+    t+=0.025
+    add_time_marker(t, "DO low", verbose=True)
+    do0.go_low(t)
+    t+=0.02
+    do0.go_high(t)
+    t+=0.01
+    do0.go_low(t)
+    t += 0.05
+    return t
+def analog_output_stream():
+    t=0.035
+    add_time_marker(t, "Sending Analog Ramp", verbose=True)
+    ao0.ramp(t=t, initial=0.0, final=1.0, duration=0.025, samplerate=1e3)
+    t+=0.025
+    ao0.constant(t=t, value=0)
+    return t
+def analog_input_stream():
+    t=0.06
+    ai0.acquire(label='measurement1', start_time=t, end_time=t+0.01)
+    return t
 t=0
 start()
-t+=0.01
-add_time_marker(t, "DO high", verbose=True)
-do0.go_high(t)
-t+=0.025
-add_time_marker(t, "Sending Analog Ramp", verbose=True)
-ao0.ramp(t=t, initial=0.0, final=1.0, duration=0.025, samplerate=1e3)
-end_val = t + 0.025
-ao0.constant(t=end_val, value=0)
-add_time_marker(t, "DO low", verbose=True)
-do0.go_low(t)
-t+=0.02
-do0.go_high(t)
-# ai0.acquire(label='measurement1', start_time=t, end_time=t+0.01)
-t+=0.01
-do0.go_low(t)
-t += 0.05
+t=max(t, digital_output_stream())
+# t=max(t, analog_output_stream())
+t=max(t, analog_input_stream())
+print(t)
 stop(t)
+
+
+# t=0
+# start()
+# t+=0.01
+# add_time_marker(t, "DO high", verbose=True)
+# do0.go_high(t)
+# t+=0.025
+# add_time_marker(t, "Sending Analog Ramp", verbose=True)
+# ao0.ramp(t=t, initial=0.0, final=1.0, duration=0.025, samplerate=1e3)
+# end_val = t + 0.025
+# ao0.constant(t=end_val, value=0)
+# add_time_marker(t, "DO low", verbose=True)
+# do0.go_low(t)
+# t+=0.02
+# do0.go_high(t)
+# # ai0.acquire(label='measurement1', start_time=t, end_time=t+0.01)
+# t+=0.01
+# do0.go_low(t)
+# t += 0.05
+# stop(t)

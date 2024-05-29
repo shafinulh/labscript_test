@@ -1,6 +1,5 @@
 from labscript import *
 from labscript_devices.PulseBlasterUSB import PulseBlasterUSB
-from labscript_devices.DummyIntermediateDevice import DummyIntermediateDevice
 from labscript_devices.NI_DAQmx.labscript_devices import NI_PCIe_6363
 
 '''
@@ -36,6 +35,10 @@ DigitalOut(
 DigitalOut(
     name='do1', parent_device=ni_6363, connection='port0/line1'
 )
+
+# Analog Input Channels
+AnalogIn(name="ai0", parent_device=ni_6363, connection='ai0')
+AnalogIn(name="ai1", parent_device=ni_6363, connection='ai1')
 
 if __name__ == '__main__':
     # Begin issuing labscript primitives
