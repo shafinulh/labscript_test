@@ -4,3 +4,6 @@
 [submodule "labscript-devices"]
 	path = labscript-devices
 	url = https://github.com/shafinulh/labscript-devices.git
+[submodule "labscript-utils"]
+	path = labscript-utils
+	url = https://github.com/shafinulh/labscript-utils.git
