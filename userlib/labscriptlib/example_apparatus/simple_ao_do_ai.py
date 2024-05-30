@@ -61,7 +61,7 @@ def digital_output_stream():
 def analog_output_stream():
     t=0.035
     add_time_marker(t, "Sending Analog Ramp", verbose=True)
-    ao0.ramp(t=t, initial=0.0, final=1.0, duration=0.025, samplerate=1e3)
+    ao0.ramp(t=t, initial=0.0, final=1.0, duration=0.025, samplerate=1e4)
     t+=0.025
     ao0.constant(t=t, value=0)
     return t
@@ -72,7 +72,7 @@ def analog_input_stream():
 t=0
 start()
 t=max(t, digital_output_stream())
-# t=max(t, analog_output_stream())
+t=max(t, analog_output_stream())
 t=max(t, analog_input_stream())
 print(t)
 stop(t)
