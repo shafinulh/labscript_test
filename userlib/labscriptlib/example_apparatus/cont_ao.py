@@ -1,12 +1,6 @@
 from labscript import *
 from labscript_devices.PulseBlasterUSB import PulseBlasterUSB
 from labscript_devices.NI_DAQmx.labscript_devices import NI_PCIe_6363
-from labscript_devices.FunctionRunner.labscript_devices import FunctionRunner
-
-'''
-Initialize the FunctionRunner that runs scripts before and after shots
-'''
-FunctionRunner(name='feedback')
 
 '''
 Initialize the PulseBlaster as the Pseudoclock
@@ -26,7 +20,7 @@ NI_PCIe_6363(
     parent_device=pb_clockline_fast,
     clock_terminal=f'/{ni_6363_max_name}/PFI0',
     MAX_name=f'{ni_6363_max_name}',
-    acquisition_rate=1000e3,
+    acquisition_rate=1e4,
     stop_order=-1,
 )
 
@@ -45,13 +39,50 @@ DigitalOut(
 # Analog Input Channels
 AnalogIn(name="ai0", parent_device=ni_6363, connection='ai0')
 AnalogIn(name="ai1", parent_device=ni_6363, connection='ai1')
-AnalogIn(name="ai2", parent_device=ni_6363, connection='ai2')
-AnalogIn(name="ai3", parent_device=ni_6363, connection='ai3')
 
-if __name__ == '__main__':
-    # Begin issuing labscript primitives
-    # start() elicits the commencement of the shot
-    start()
+'''
+Define the Experiment Logic
+'''
 
-    # Stop the experiment shot with stop()
-    stop(1.0)
+def analog_output_stream():
+    t=0.035
+    ao0.ramp(t=t, initial=0.0, final=1.0, duration=0.025, samplerate=1e4)
+    t+=0.025
+    ao0.constant(t=t, value=0)
+    ao0.sine4_ramp(t=t, duration=1.25, initial=0.0, final=1.0, samplerate=1e4)
+    t+=1.25
+    ao0.exp_ramp_t(t=t, initial=1.0, final=2.5, duration=2.5, samplerate=1e4, time_constant=0.35)
+    t+=2.5
+    ao0.constant(t=t, value=0)
+    return t
+def analog_input_stream():
+    t=0.06
+    ai0.acquire(label='measurement1', start_time=t, end_time=t+0.01)
+    return t
+t=0
+start()
+t=max(t, analog_output_stream())
+t=max(t, analog_input_stream())
+print(t)
+stop(t)
+
+
+# t=0
+# start()
+# t+=0.01
+# add_time_marker(t, "DO high", verbose=True)
+# do0.go_high(t)
+# t+=0.025
+# add_time_marker(t, "Sending Analog Ramp", verbose=True)
+# ao0.ramp(t=t, initial=0.0, final=1.0, duration=0.025, samplerate=1e3)
+# end_val = t + 0.025
+# ao0.constant(t=end_val, value=0)
+# add_time_marker(t, "DO low", verbose=True)
+# do0.go_low(t)
+# t+=0.02
+# do0.go_high(t)
+# # ai0.acquire(label='measurement1', start_time=t, end_time=t+0.01)
+# t+=0.01
+# do0.go_low(t)
+# t += 0.05
+# stop(t)

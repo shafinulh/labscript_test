@@ -20,7 +20,7 @@ NI_PCIe_6363(
     parent_device=pb_clockline_fast,
     clock_terminal=f'/{ni_6363_max_name}/PFI0',
     MAX_name=f'{ni_6363_max_name}',
-    acquisition_rate=1e4,
+    acquisition_rate=acq_rate,
     stop_order=-1,
 )
 
