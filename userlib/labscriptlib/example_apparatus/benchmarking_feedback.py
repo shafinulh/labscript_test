@@ -61,7 +61,7 @@ def compute_feedback(shot_context,t):
     import lyse
 
     run = lyse.Run(shot_context.h5_file)
-    ai1_signal = run.get_trace("measurement_AO_1")
+    ai1_signal = run.get_trace("AI_signal")
     if ai1_signal[1].max() < 3:        
         current = rm.get_globals()
         new_ramp_vf = current['ramp_vf'] * 1.2
@@ -116,7 +116,7 @@ def analog_output_exp_ramp():
 
 def collect_AO_0():
     t=ramp_ti
-    t+=ai0.acquire(label='measurement_AO_0', start_time=t, end_time=ramp_tf)
+    t+=ai0.acquire(label='AO_ramp', start_time=t, end_time=ramp_tf)
     
     t+= 10e-3
     ai0.acquire(label='dummy_measurement_AO_0_fast', start_time=t, end_time=t+3e-3)
@@ -124,7 +124,7 @@ def collect_AO_0():
     return t
 def collect_AO_1():
     t=exp_ramp_ti
-    t+=ai1.acquire(label='measurement_AO_1', start_time=t, end_time=exp_ramp_tf)
+    t+=ai1.acquire(label='AI_signal', start_time=t, end_time=exp_ramp_tf)
     
     t=45e-3
     ai1.acquire(label='dummy_measurement_AO_1_fast', start_time=t, end_time=t+3e-3)

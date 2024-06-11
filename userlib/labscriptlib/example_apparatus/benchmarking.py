@@ -88,32 +88,29 @@ def analog_output_exp_ramp():
 
 def collect_AO_0():
     t=ramp_ti
-    t+=ai0.acquire(label='measurement_AO_0', start_time=t, end_time=ramp_tf)
+    t+=ai0.acquire(label='AO_ramp', start_time=t, end_time=ramp_tf)
     
-    t+= 10e-3
-    ai0.acquire(label='dummy_measurement_AO_0_fast', start_time=t, end_time=t+3e-3)
-    t+=3e-3
+    # t+= 10e-3
+    # ai0.acquire(label='dummy_measurement_AO_0_fast', start_time=t, end_time=t+3e-3)
+    # t+=3e-3
     return t
 def collect_AO_1():
     t=exp_ramp_ti
-    t+=ai1.acquire(label='measurement_AO_1', start_time=t, end_time=exp_ramp_tf)
+    t+=ai1.acquire(label='AI_signal', start_time=t, end_time=exp_ramp_tf)
     
-    t=45e-3
-    ai1.acquire(label='dummy_measurement_AO_1_fast', start_time=t, end_time=t+3e-3)
-    t+=3e-3
+    # t=45e-3
+    # ai1.acquire(label='dummy_measurement_AO_1_fast', start_time=t, end_time=t+3e-3)
+    # t+=3e-3
     return t
 def collect_dummy_inputs():
     t=62e-3
-    ai2.acquire(label='dummy_measurement_slow', start_time=t, end_time=t+40e-3)
-    t+=40e-3
+    ai2.acquire(label='dummy_measurement_slow', start_time=t, end_time=t+20e-3)
+    t+=20e-3
     t+=5e-3
     ai3.acquire(label='dummy_measurement_med', start_time=t, end_time=t+13e-3)
     t+=13e-3
     return t
 
-# dummy ramp to turn on a device, can specify the start time, end time and the voltage values
-# some pwm signals that are conditioned based on the globals
-# some sinusoidal input into a 
 t=0
 start()
 t=max(t, digital_start_ref())
@@ -122,7 +119,7 @@ t=max(t, analog_output_ramp())
 t=max(t, analog_output_exp_ramp())
 t=max(t, collect_AO_0())
 t=max(t, collect_AO_1())
-t=max(t, collect_dummy_inputs())
+# t=max(t, collect_dummy_inputs())
 print(t)
 stop(t)
 

@@ -18,11 +18,11 @@ run_globals = run
 
 # extract the traces
 trace_names = [
-    "measurement_AO_0",
-    "dummy_measurement_AO_0_fast",
-    "measurement_AO_1",
-    "dummy_measurement_slow",
-    "dummy_measurement_med"
+    "AO_ramp",
+    # "dummy_measurement_AO_0_fast",
+    "AI_signal",
+    # "dummy_measurement_slow",
+    # "dummy_measurement_med"
 ]
 trace_data = {}
 
@@ -47,5 +47,5 @@ plt.show()
 
 # Compute a result based on the data processing and save it to the 'results' group of
 # the shot file
-ai1_int = trace_data["measurement_AO_1"][1].sum()
+ai1_int = trace_data["AO_ramp"][1].sum()
 run.save_result('ai1 integrated', ai1_int)
