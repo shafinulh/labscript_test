@@ -5,18 +5,12 @@ from labscript_devices.NI_DAQmx.labscript_devices import NI_PCIe_6363
 from labscript_devices.FunctionRunner.labscript_devices import FunctionRunner
 
 '''
-Initialize the FunctionRunner that runs scripts before and after shots
-'''
-FunctionRunner(name='feedback1')
-
-'''
 Initialize the PulseBlaster as the Pseudoclock
 and all the channels to be used
 '''
 # PulseBlasterUSB(name='pb',board_number=0,programming_scheme='pb_start/BRANCH')
-# ClockLine(name='pb_clockline_fast', pseudoclock=pb.pseudoclock,connection='flag 0')
+# ClockLine(name='pb_clock_line', pseudoclock=pb.pseudoclock,connection='flag 0')
 PineBlaster(name='pb', usbport='COM3')
-# ClockLine(name='pb_clockline_fast', pseudoclock=pb.pseudoclock,connection='flag 0')
 
 '''
 Initialize the NI Hardware and all the channels
@@ -60,18 +54,21 @@ def digital_start_ref():
     t+=10e-3
     do1.go_low(t)
     return t
+
 def digital_pwm_stream():
     t=ctrl_pwm_ti
-    add_time_marker(t, "D0 PWM CTRL")
+    # add_time_marker(t, "D0 PWM CTRL")
     while t<=ctrl_pwm_tf:
         do0.go_high(t)
         t+=((1/ctrl_pwm_freq) * ctrl_duty_cycle)
         do0.go_low(t)
         t+=((1/ctrl_pwm_freq) * (1-ctrl_duty_cycle))
     return t
+
 def analog_output_ramp():
     t=ramp_ti
-    add_time_marker(t, "A0 Ramp", verbose=True)
+    ao0.constant(t=0, value=0)
+    # add_time_marker(t, "A0 Ramp", verbose=True)
     t+=ao0.ramp(
         t=t, 
         initial=ramp_vi, 
@@ -79,38 +76,40 @@ def analog_output_ramp():
         duration=ramp_dur, 
         samplerate=ramp_rate
     )
-    ao0.constant(t=t, value=(ramp_vf+ramp_vi)/2)
+    ao0.constant(t=t, value=(ramp_vf/2))
     return t
+
 def analog_output_exp_ramp():
+    t=0
+    ao1.constant(t=t, value=exp_ramp_vi)
     t=exp_ramp_ti
-    add_time_marker(t, "A1 Fast Exp Ramp", verbose=True)
-    t+=ao1.exp_ramp_t(
-        t=t, 
-        initial=exp_ramp_vi, 
-        final=exp_ramp_vf, 
-        duration=exp_ramp_dur, 
-        samplerate=exp_ramp_rate, 
-        time_constant=exp_ramp_time_const,
+    t+=ao1.sine4_reverse_ramp(
+        t=t,
+        initial=exp_ramp_vf,
+        final=exp_ramp_vi,
+        duration=exp_ramp_dur_1,
+        samplerate=exp_ramp_rate,
+        truncation=0.8
     )
-    ao1.constant(t=t, value=(exp_ramp_vf+exp_ramp_vi)/2)
+    t+=ao1.sine_ramp(
+        t=t,
+        initial=exp_ramp_vf,
+        final=exp_ramp_vi,
+        duration=exp_ramp_dur_2,
+        samplerate=exp_ramp_rate,
+    )
     return t
 
 def collect_AO_0():
     t=ramp_ti
-    t+=ai0.acquire(label='AO_ramp', start_time=t, end_time=ramp_tf)
-    
-    # t+= 10e-3
-    # ai0.acquire(label='dummy_measurement_AO_0_fast', start_time=t, end_time=t+3e-3)
-    # t+=3e-3
+    t+=ai0.acquire(label='AO_ramp', start_time=t, end_time=exp_ramp_tf)
     return t
+
 def collect_AO_1():
     t=exp_ramp_ti
-    t+=ai1.acquire(label='AI_signal', start_time=t, end_time=exp_ramp_tf)
-    
-    # t=45e-3
-    # ai1.acquire(label='dummy_measurement_AO_1_fast', start_time=t, end_time=t+3e-3)
-    # t+=3e-3
+    t+=ai1.acquire(label='AI_signal', start_time=0, end_time=exp_ramp_tf)
     return t
+
 def collect_dummy_inputs():
     t=62e-3
     ai2.acquire(label='dummy_measurement_slow', start_time=t, end_time=t+20e-3)
@@ -131,4 +130,3 @@ t=max(t, collect_AO_1())
 # t=max(t, collect_dummy_inputs())
 print(t)
 stop(t)
-

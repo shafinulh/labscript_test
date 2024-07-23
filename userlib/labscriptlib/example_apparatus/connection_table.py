@@ -5,19 +5,12 @@ from labscript_devices.NI_DAQmx.labscript_devices import NI_PCIe_6363
 from labscript_devices.FunctionRunner.labscript_devices import FunctionRunner
 
 '''
-Initialize the FunctionRunner that runs scripts before and after shots
-'''
-FunctionRunner(name='feedback1')
-
-'''
 Initialize the PulseBlaster as the Pseudoclock
 and all the channels to be used
 '''
 # PulseBlasterUSB(name='pb',board_number=0,programming_scheme='pb_start/BRANCH')
-# ClockLine(name='pb_clockline_fast', pseudoclock=pb.pseudoclock,connection='flag 0')
+# ClockLine(name='pb_clock_line', pseudoclock=pb.pseudoclock,connection='flag 0')
 PineBlaster(name='pb', usbport='COM3')
-# ClockLine(name='pb_clockline_fast', pseudoclock=pb.pseudoclock,connection='flag 0')
-
 '''
 Initialize the NI Hardware and all the channels
 to be used on each card
