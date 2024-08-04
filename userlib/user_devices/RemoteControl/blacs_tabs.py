@@ -34,7 +34,38 @@ TODO:
 - make the overall COMMS_ENABLE a nicer interface 
 """
 
+class DynamicStackedWidget(QtWidgets.QStackedWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.currentChanged.connect(self.adjustSize)
+
+    def sizeHint(self):
+        if self.currentWidget():
+            return self.currentWidget().sizeHint()
+        return super().sizeHint()
+
+    def minimumSizeHint(self):
+        if self.currentWidget():
+            return self.currentWidget().minimumSizeHint()
+        return super().minimumSizeHint()
+
+    def adjustSize(self):
+        self.setMinimumSize(self.minimumSizeHint())
+        super().adjustSize()
+        if self.parent() and isinstance(self.parent(), QtWidgets.QWidget):
+            self.parent().adjustSize()
+
 class RemoteControlTab(DeviceTab):
+    def create_centered_button_widget(self, button):
+        layout = QtWidgets.QVBoxLayout()
+        layout.addStretch()
+        layout.addWidget(button, alignment=QtCore.Qt.AlignCenter)
+        layout.addStretch()
+        
+        widget = QtWidgets.QWidget()
+        widget.setLayout(layout)
+        return widget
+    
     def initialise_GUI(self):
         connection_table = self.settings['connection_table']
         # Retrieve the device connection object that contains information about all the 
@@ -73,7 +104,7 @@ class RemoteControlTab(DeviceTab):
             }
         self.create_analog_outputs(AO_prop)
         _, self.AO_widgets, _ = self.auto_create_widgets()
-        self.auto_place_widgets(("Analog Outputs", self.AO_widgets))
+        self.ao_toolpalette_widget = self.auto_place_widgets(("Analog Outputs", self.AO_widgets))
 
         # Remote Monitor Value Widgets
         AM_prop = {}
@@ -88,16 +119,51 @@ class RemoteControlTab(DeviceTab):
             }
         self.create_analog_outputs(AM_prop)
         _, self.AM_widgets, _ = self.create_subset_widgets(AM_prop)
-        self.auto_place_widgets(("Analog Monitors", self.AM_widgets))
+        self.am_toolpalette_widget = self.auto_place_widgets(("Analog Monitors", self.AM_widgets))
         
         for _, widget in self.AM_widgets.items():
             widget.setEnabled(False)
 
+
+        # Create connectivity buttons
+        button_height = 60
+
+        self.reconnect_reqrep_button = QtWidgets.QPushButton("Click Here to Reconnect\nin order to send values")
+        self.reconnect_reqrep_button.setStyleSheet("background-color: #ffcccc;")
+        self.reconnect_reqrep_button.clicked.connect(self.connect_to_remote)
+        # self.reconnect_reqrep_button.setFixedHeight(button_height)
+        # self.reconnect_reqrep_button.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.reconnect_reqrep_button.hide()
+
+        self.reconnect_pubsub_button = QtWidgets.QPushButton("Pub-Sub not connected,\nvalues cannot be monitored.\nClick Here to Reconnect")
+        self.reconnect_pubsub_button.setStyleSheet("background-color: #ffcccc;")
+        self.reconnect_pubsub_button.clicked.connect(self.connect_to_remote)
+        # self.reconnect_pubsub_button.setFixedHeight(button_height)
+        # self.reconnect_pubsub_button.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        self.reconnect_pubsub_button.hide()
+
+        # Set up the layout
         self.main_gui_layout = self.get_tab_layout()
+
+        # Create placeholder widgets to hold either the toolpalette or the button
+        self.ao_placeholder = DynamicStackedWidget()
+        self.am_placeholder = DynamicStackedWidget()
+        # Add toolpalettes and buttons to their respective placeholders
+        self.ao_placeholder.addWidget(self.ao_toolpalette_widget)
+        self.ao_placeholder.addWidget(self.reconnect_reqrep_button)
+        self.am_placeholder.addWidget(self.am_toolpalette_widget)
+        self.am_placeholder.addWidget(self.reconnect_pubsub_button)
+        self.main_gui_layout.insertWidget(0, self.ao_placeholder)
+        self.main_gui_layout.insertWidget(1, self.am_placeholder)   
+
         # Enable Comms Checkbox
         self.comms_check_box = QtWidgets.QCheckBox("Disable Input")
         self.main_gui_layout.addWidget(self.comms_check_box)
         self.comms_check_box.toggled.connect(self.on_checkbox_toggled)
+
+        self.ao_placeholder.hide()
+        self.am_placeholder.hide()
+        self.comms_check_box.hide()
 
         # Store references to all widgets in the main gui layout
         self.main_gui_widgets = []
@@ -200,15 +266,23 @@ class RemoteControlTab(DeviceTab):
 
     def show_failed_connection(self):
         with qtlock:
-            for widget in self.main_gui_widgets:
-                widget.hide()
+            self.ao_placeholder.hide()
+            self.am_placeholder.hide()
+            self.comms_check_box.hide()
+
             self.failed_button.show()
 
     def show_main_gui(self):
         with qtlock:
             self.failed_button.hide()
-            for widget in self.main_gui_widgets:
-                widget.show()
+
+            self.ao_placeholder.setCurrentWidget(self.ao_toolpalette_widget)
+            self.ao_placeholder.adjustSize()
+            self.am_placeholder.setCurrentWidget(self.am_toolpalette_widget)
+            self.am_placeholder.adjustSize()
+            self.ao_placeholder.show()
+            self.am_placeholder.show()
+            self.comms_check_box.show()
 
     @define_state(MODE_MANUAL, True)
     def on_checkbox_toggled(self, state):
