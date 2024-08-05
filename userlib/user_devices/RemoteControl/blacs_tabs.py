@@ -10,20 +10,10 @@ from blacs.device_base_class import (
     MODE_TRANSITION_TO_BUFFERED,
     MODE_TRANSITION_TO_MANUAL,
 )
+
 import threading
 import zmq
-
-from qtutils import qtlock
-
-import warnings
-
-"""
-TODO:
-- need to handle widgets for boolean values along with the Analog monitors
-    - retrieve boolean value and then update the boolean indicator as necessary
-
-- make the overall COMMS_ENABLE a nicer interface 
-"""
+import time
 
 class DynamicStackedWidget(QtWidgets.QStackedWidget):
     def __init__(self, parent=None):
@@ -96,18 +86,25 @@ class RemoteControlTab(DeviceTab):
         device = connection_table.find_by_name(self.device_name)
         self.properties = device.properties
 
-        self.child_output_connections = []
-        self.child_output_devices = []
-        self.child_monitor_connections = []
-        self.child_monitor_devices = []
+        self.mock = self.properties['mock']
+        self.host = self.properties['host']
+        self.port = self.properties['port']
 
-        for device in device.child_list.values():
-            if device.device_class == "RemoteAnalogOut":
-                self.child_output_devices.append(device)
-                self.child_output_connections.append(device.parent_port)
-            elif device.device_class == "RemoteAnalogMonitor":
-                self.child_monitor_devices.append(device)
-                self.child_monitor_connections.append(device.parent_port)
+        self.connected = False
+        self.pubsub_connected = False
+
+        self.child_output_devices = []
+        self.child_monitor_devices = []
+        self.child_output_connections = []
+        self.child_monitor_connections = []
+
+        for child_device in device.child_list.values():
+            if child_device.device_class == "RemoteAnalogOut":
+                self.child_output_devices.append(child_device)
+                self.child_output_connections.append(child_device.parent_port)
+            elif child_device.device_class == "RemoteAnalogMonitor":
+                self.child_monitor_devices.append(child_device)
+                self.child_monitor_connections.append(child_device.parent_port)
             else:
                 # throw an error
                 pass
@@ -150,12 +147,12 @@ class RemoteControlTab(DeviceTab):
         # Create connectivity buttons
         self.reconnect_reqrep_button = QtWidgets.QPushButton("Click Here to Reconnect\nin order to send values")
         self.reconnect_reqrep_button.setStyleSheet("background-color: #ffcccc;")
-        self.reconnect_reqrep_button.clicked.connect(self.connect_to_remote)
+        self.reconnect_reqrep_button.clicked.connect(self.reconnect_reqrep)
         self.reconnect_reqrep_button.hide()
 
         self.reconnect_pubsub_button = QtWidgets.QPushButton("Pub-Sub not connected,\nvalues cannot be monitored.\nClick Here to Reconnect")
         self.reconnect_pubsub_button.setStyleSheet("background-color: #ffcccc;")
-        self.reconnect_pubsub_button.clicked.connect(self.connect_to_remote)
+        self.reconnect_pubsub_button.clicked.connect(self.reconnect_pubsub)
         self.reconnect_pubsub_button.hide()
 
         # Set up the layout
@@ -197,28 +194,29 @@ class RemoteControlTab(DeviceTab):
             "main_worker",
             "user_devices.RemoteControl.blacs_workers.RemoteControlWorker",
             {
-                "mock": self.properties['mock'],
-                "ip_address": self.properties['ip_address'],
-                "port": self.properties['port'],
+                "mock": self.mock,
+                "host": self.host,
+                "port": self.port,
                 "child_output_connections": self.child_output_connections,
                 "child_monitor_connections": self.child_monitor_connections,
             }
         )
         self.primary_worker = "main_worker"
 
-        if self.properties['mock']:
+        if self.mock:
             self.connected = True
             self.manual_remote_polling()
         else:
             self.connect_to_remote()
             
         self._can_check_remote_values = True
-
+    
+    # DEPRECATE
     def manual_remote_polling(self, enable_comms_state=False):    
         # Start up the remote value polling
         self.statemachine_timeout_add(500, self.status_monitor)
         self.statemachine_timeout_add(5000, self.check_remote_values) 
-         
+
         if enable_comms_state:
             self.statemachine_timeout_remove(self.check_remote_values_allowed)  
             self.statemachine_timeout_add(5000, self.check_remote_values)  
@@ -227,48 +225,7 @@ class RemoteControlTab(DeviceTab):
             # start up the remote value check which gracefully updates the FPV 
             self.statemachine_timeout_add(500, self.check_remote_values_allowed)  
 
-    @define_state(MODE_MANUAL, True)
-    def connect_to_remote(self):
-        self.connected = yield(self.queue_work(self.primary_worker, 'connect_to_remote'))
-        if self.connected:
-            self.show_main_gui()    
-            self.manual_remote_polling()
-        else:
-            self.show_failed_connection()
-
-    def show_failed_connection(self):
-        with qtlock:
-            self.ao_placeholder.hide()
-            self.am_placeholder.hide()
-            self.comms_check_box.hide()
-
-            self.failed_button.show()
-
-    def show_main_gui(self):
-        with qtlock:
-            self.failed_button.hide()
-
-            self.ao_placeholder.setCurrentWidget(self.ao_toolpalette_widget)
-            self.ao_placeholder.adjustSize()
-            self.am_placeholder.setCurrentWidget(self.am_toolpalette_widget)
-            self.am_placeholder.adjustSize()
-            self.ao_placeholder.show()
-            self.am_placeholder.show()
-            self.comms_check_box.show()
-
-    @define_state(MODE_MANUAL, True)
-    def on_checkbox_toggled(self, state):
-        with qtlock:
-            for _, widget in self.AO_widgets.items():
-                widget.setEnabled(not state)
-        
-        self.manual_remote_polling(state)
-
-        kwargs = {'enable_comms': not state}
-        yield(self.queue_work(self.primary_worker, 'update_settings', **kwargs))
-
-    # Function to update the GUI with the most recent value of the actual 
-    # value of the remote Device
+    # DEPRECATE
     @define_state(
         MODE_MANUAL|MODE_BUFFERED|MODE_TRANSITION_TO_BUFFERED|MODE_TRANSITION_TO_MANUAL,True,
     )
@@ -280,54 +237,141 @@ class RemoteControlTab(DeviceTab):
             # with qtlock:
             self._AO[connection].set_value(float(value), program=False, update_gui=True)
         return response
+    
+    @define_state(MODE_MANUAL, True)
+    def on_checkbox_toggled(self, state):
+        with qtlock:
+            for _, widget in self.AO_widgets.items():
+                widget.setEnabled(not state)
+        
+        self.manual_remote_polling(state)
 
-    # def remote_subscriber(self):
-    #     self.established = False
-    #     self.logger.debug("want to connect to remote publisher")
-    #     while True:
-    #         with self.condition:
-    #             while not self.connected:
-    #                 self.condition.wait()
-    #             self.established = False
-    #             self.logger.debug("Processing started")
+        kwargs = {'enable_comms': not state}
+        yield(self.queue_work(self.primary_worker, 'update_settings', **kwargs))
+    
+    def reconnect_reqrep(self):
+        self.connect_to_reqrep()
+        self.update_gui_status()
+    
+    def reconnect_pubsub(self):
+        self.connect_to_pubsub()
+        self.update_gui_status()
+        
+    def connect_to_remote(self):
+        self.connect_to_reqrep()
+        self.connect_to_pubsub()
 
-    #         while self.connected:
-    #             if not self.established:
-    #                 table = self.settings['connection_table']
-    #                 properties = table.find_by_name(self.device_name).properties
-    #                 host = properties["ip_address"]
-    #                 port = properties["port"]
+    @define_state(MODE_MANUAL, True)
+    def connect_to_reqrep(self):
+        self.connected = yield(self.queue_work(self.primary_worker, 'connect_to_remote'))
+        self.update_gui_status()
 
-    #                 # connect to server
-    #                 context = zmq.Context()
-    #                 x_subscriber = context.socket(zmq.SUB)
-    #                 x_subscriber.connect(f"tcp://{host}:{55536}")
-    #                 x_subscriber.setsockopt_string(zmq.SUBSCRIBE, "laser_x")
+    def connect_to_pubsub(self):
+        self.pubsub_connected = False
+        self.heartbeat_thread = threading.Thread(target=self.heartbeat_subscriber)
+        self.heartbeat_thread.daemon = True
+        self.heartbeat_thread.start()
 
-    #                 y_subscriber = context.socket(zmq.SUB)
-    #                 y_subscriber.connect(f"tcp://{host}:{55536}")
-    #                 y_subscriber.setsockopt_string(zmq.SUBSCRIBE, "laser_y")
+    def heartbeat_subscriber(self):
+        context = zmq.Context()
+        socket = context.socket(zmq.SUB)
+        socket.connect(f"tcp://{self.host}:{self.port + 1}")
+        socket.setsockopt_string(zmq.SUBSCRIBE, "heartbeat")
 
-    #                 poller = zmq.Poller()
-    #                 poller.register(x_subscriber, zmq.POLLIN)
-    #                 poller.register(y_subscriber, zmq.POLLIN)
+        poller = zmq.Poller()
+        poller.register(socket, zmq.POLLIN)
 
-    #                 self.established = True
-                
-    #             ## NON BLOCKING THREAD
-    #             try:
-    #                 socks = dict(poller.poll())
-    #                 if x_subscriber in socks:
-    #                     message = x_subscriber.recv_string()
-    #                     self.logger.debug(f"Received on socket1: {message}")
-    #                     # Process message for topic1
-                    
-    #                 if y_subscriber in socks:
-    #                     message = y_subscriber.recv_string()
-    #                     self.logger.debug(f"Received on socket2: {message}")
-    #                     # Process message for topic2
-                    
-    #             except KeyboardInterrupt:
-    #                 break
-                                
-    #         self.logger.debug("Connection suspended")
+        while True:
+            try:
+                socks = dict(poller.poll(2000))  # 5000 ms timeout
+                if socket in socks and socks[socket] == zmq.POLLIN:
+                    message = socket.recv_string(zmq.NOBLOCK)
+                    if message == "heartbeat":
+                        if not self.pubsub_connected:
+                            self.pubsub_connected = True
+                            self.update_gui_status()
+                            self.logger.debug("Pub-sub connection established")
+                            self.start_subscriber()
+                else:
+                    if self.pubsub_connected:
+                        self.pubsub_connected = False
+                        self.update_gui_status()
+                        self.logger.error("Heartbeat timeout, pub-sub connection lost")
+                    break
+            except zmq.ZMQError as e:
+                self.logger.error(f"ZMQ E rror in heartbeat subscriber: {e}")
+                self.pubsub_connected = False
+                self.update_gui_status()
+                break
+            
+            time.sleep(1)
+
+    def start_subscriber(self):
+        if not hasattr(self, 'subscriber_thread') or not self.subscriber_thread.is_alive():
+            self.subscriber_thread = threading.Thread(target=self.subscriber_loop)
+            self.subscriber_thread.daemon = True
+            self.subscriber_thread.start()
+
+    def subscriber_loop(self):
+        context = zmq.Context()
+        subscribers = {}
+        poller = zmq.Poller()
+
+        try:
+            for connection in self.child_monitor_connections:
+                subscriber = context.socket(zmq.SUB)
+                subscriber.connect(f"tcp://{self.host}:{self.port + 1}")
+                subscriber.setsockopt_string(zmq.SUBSCRIBE, connection)
+                subscribers[connection] = subscriber
+                poller.register(subscriber, zmq.POLLIN)
+
+            while self.pubsub_connected:
+                try:
+                    socks = dict(poller.poll(timeout=100))
+                    for subscriber in socks:
+                        message = subscriber.recv_string()
+                        connection, value = message.split(" ", 1)
+                        self.update_gui_with_message(connection, value)
+
+                except zmq.ZMQError as e:
+                    self.logger.error(f"ZMQ error in subscriber loop: {e}")
+
+        finally:
+            for subscriber in subscribers.values():
+                subscriber.close()
+            self.update_gui_status()
+            context.term()
+    
+    def update_gui_with_message(self, connection, value):
+        if connection in self.AM_widgets:
+            with qtlock:
+                self._AO[connection].set_value(float(value), program=False)
+
+    def update_gui_status(self):
+        with qtlock:
+            if not (self.connected or self.pubsub_connected):
+                # No connection
+                self.failed_button.show()
+
+                self.ao_placeholder.hide()
+                self.am_placeholder.hide()
+                self.comms_check_box.hide()
+            else:
+                if self.connected and self.pubsub_connected:
+                    # Fully connected
+                    self.ao_placeholder.setCurrentWidget(self.ao_toolpalette_widget)
+                    self.am_placeholder.setCurrentWidget(self.am_toolpalette_widget)
+                    self.comms_check_box.show()
+                elif self.connected:
+                    # Only req-rep connected
+                    self.ao_placeholder.setCurrentWidget(self.ao_toolpalette_widget)
+                    self.am_placeholder.setCurrentWidget(self.reconnect_pubsub_button)
+                    self.comms_check_box.show()
+                elif self.pubsub_connected:
+                    # Only pub-sub connected
+                    self.ao_placeholder.setCurrentWidget(self.reconnect_reqrep_button)
+                    self.am_placeholder.setCurrentWidget(self.am_toolpalette_widget)
+                    self.comms_check_box.hide()       
+                self.failed_button.hide()
+                self.ao_placeholder.show()
+                self.am_placeholder.show()
