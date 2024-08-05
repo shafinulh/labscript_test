@@ -10,38 +10,6 @@ from labscript_utils.ls_zprocess import Context
 from labscript_utils.shared_drive import path_to_local
 from labscript_utils.properties import set_attributes
 
-"""
-TODO:
-
-- (DONE) add some graceful handling for establishing a connection with a remote device
-
-- need to handle the following labscript flows:
-    - (DONE) go back to normal after pressing the refresh button
-        - currently it is not connected
-    - get_save_data for when the tab fails and has to set a safe value
-    - handle the abort flow properly
-
-    - COME UP WITH MOCK TESTS FOR ALL THESE SCENARIOS
-
-- (DONE) when we don't have connection, still allow operation of all other devices
-    - throw fatal error if you try to do any sort of transition_to_buffered whilst not connected
-    - program_manual and such are turned off by default by hiding everything
-
-- (DONE) figure out what to do when a remote request fails
-    - how should we handle the failure modes?
-    - should introduce some notions of LABSCRIPT_ERRORS
-
-- add additional network communication schemes
-    - PUB/SUB where the remote server will publish data whenever there are updates
-    - where the remote server will publish data whenever there are updates 
-        - for these such infrequent updates, should using a blocking poll operation which
-        doesn't constantly poll for information but waits for the next update to recieve at 
-        the socket
-        - this is supported in zmq through the poller.poll operation
-    - the worker will have a thread that checks the subscriptions, and if it receives one,
-    then it will wake up the GUI to make a change
-
-"""
 class RemoteCommunication:
     """
     A class for handling remote communication with a device.
