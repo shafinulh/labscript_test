@@ -1,12 +1,3 @@
-"""
-Defining the GUI:
-
-To start it will only contain:
-    - An AO to which we can write values
-    - a Read only cell where we recieve the remote values 
-"""
-import labscript_utils.h5_lock
-import h5py
 from labscript_utils import dedent
 from qtutils.qt import QtWidgets, QtGui, QtCore
 from qtutils import qtlock
@@ -55,6 +46,40 @@ class DynamicStackedWidget(QtWidgets.QStackedWidget):
         if self.parent() and isinstance(self.parent(), QtWidgets.QWidget):
             self.parent().adjustSize()
 
+class FailureButton(QtWidgets.QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        
+        self.button = QtWidgets.QPushButton("CONNECTION FAILED, CLICK TO RECONNECT")
+        self.button.setStyleSheet("""
+            QPushButton {
+                color: white;
+                font-weight: bold;
+                background-color: #ff6666;
+                border: 2px solid #ff4d4d;
+                border-radius: 10px;
+                padding: 20px 40px;
+                font-size: 18px;
+            }
+            QPushButton:hover {
+                background-color: #ff4d4d;
+            }
+            QPushButton:pressed {
+                background-color: #ff3333;
+            }
+        """)
+
+        layout = QtWidgets.QVBoxLayout()
+        layout.setAlignment(QtCore.Qt.AlignCenter)
+        layout.addStretch(1)
+        layout.addWidget(self.button, alignment=QtCore.Qt.AlignCenter)
+        layout.addStretch(1)
+
+        self.setLayout(layout)
+
+    def connect_clicked(self, slot):
+        self.button.clicked.connect(slot)
+
 class RemoteControlTab(DeviceTab):
     def create_centered_button_widget(self, button):
         layout = QtWidgets.QVBoxLayout()
@@ -68,8 +93,6 @@ class RemoteControlTab(DeviceTab):
     
     def initialise_GUI(self):
         connection_table = self.settings['connection_table']
-        # Retrieve the device connection object that contains information about all the 
-        # experimental setup.
         device = connection_table.find_by_name(self.device_name)
         self.properties = device.properties
 
@@ -124,31 +147,26 @@ class RemoteControlTab(DeviceTab):
         for _, widget in self.AM_widgets.items():
             widget.setEnabled(False)
 
-
         # Create connectivity buttons
-        button_height = 60
-
         self.reconnect_reqrep_button = QtWidgets.QPushButton("Click Here to Reconnect\nin order to send values")
         self.reconnect_reqrep_button.setStyleSheet("background-color: #ffcccc;")
         self.reconnect_reqrep_button.clicked.connect(self.connect_to_remote)
-        # self.reconnect_reqrep_button.setFixedHeight(button_height)
-        # self.reconnect_reqrep_button.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.reconnect_reqrep_button.hide()
 
         self.reconnect_pubsub_button = QtWidgets.QPushButton("Pub-Sub not connected,\nvalues cannot be monitored.\nClick Here to Reconnect")
         self.reconnect_pubsub_button.setStyleSheet("background-color: #ffcccc;")
         self.reconnect_pubsub_button.clicked.connect(self.connect_to_remote)
-        # self.reconnect_pubsub_button.setFixedHeight(button_height)
-        # self.reconnect_pubsub_button.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.reconnect_pubsub_button.hide()
 
         # Set up the layout
         self.main_gui_layout = self.get_tab_layout()
 
-        # Create placeholder widgets to hold either the toolpalette or the button
+        # Placeholder widgets to hold either the toolpalette or the button
+        # Use the dynamic class to adjust the size of the placeholder widget based
+        # on the size of the toolpalette/button
         self.ao_placeholder = DynamicStackedWidget()
         self.am_placeholder = DynamicStackedWidget()
-        # Add toolpalettes and buttons to their respective placeholders
+        
         self.ao_placeholder.addWidget(self.ao_toolpalette_widget)
         self.ao_placeholder.addWidget(self.reconnect_reqrep_button)
         self.am_placeholder.addWidget(self.am_toolpalette_widget)
@@ -161,59 +179,17 @@ class RemoteControlTab(DeviceTab):
         self.main_gui_layout.addWidget(self.comms_check_box)
         self.comms_check_box.toggled.connect(self.on_checkbox_toggled)
 
+        # Hide the UI until after trying to establish connection
         self.ao_placeholder.hide()
         self.am_placeholder.hide()
         self.comms_check_box.hide()
-
-        # Store references to all widgets in the main gui layout
-        self.main_gui_widgets = []
-        for i in range(self.main_gui_layout.count()):
-            widget = self.main_gui_layout.itemAt(i).widget()
-            if widget:
-                self.main_gui_widgets.append(widget)
         
         # Connection Failed Button
         # TODO: define the failed button layout in the QT designer application and store in .ui file
-        self.center_layout = QtWidgets.QVBoxLayout()
-        self.center_layout.setAlignment(QtCore.Qt.AlignCenter)
-
-        self.failed_button = QtWidgets.QPushButton("CONNECTION FAILED, CLICK TO RECONNECT")
-        self.failed_button.clicked.connect(lambda _:self.connect_to_remote())
-
-        self.failed_button.setStyleSheet("""
-            QPushButton {
-                color: white;
-                font-weight: bold;
-                background-color: #ff6666;
-                border: 2px solid #ff4d4d;
-                border-radius: 10px;
-                padding: 20px 40px;
-                font-size: 18px;
-            }
-            QPushButton:hover {
-                background-color: #ff4d4d;
-            }
-            QPushButton:pressed {
-                background-color: #ff3333;
-            }
-        """)
-
-        self.center_layout.addStretch(1)
-        self.center_layout.addWidget(self.failed_button, alignment=QtCore.Qt.AlignCenter)
-        self.center_layout.addStretch(1)
-
-        self.main_gui_layout.addLayout(self.center_layout)
-
+        self.failed_button = FailureButton()
+        self.failed_button.connect_clicked(lambda: self.connect_to_remote())
+        self.main_gui_layout.addWidget(self.failed_button)
         self.failed_button.hide()
-
-        # Manage connection to the remote server
-        self.polling = False
-        self.connected = False
-        self.condition = threading.Condition()
-
-        # self.remote_subscriptions = threading.Thread(target = self.remote_subscriber)
-        # self.remote_subscriptions.daemon=True
-        # self.remote_subscriptions.start()
 
     def initialise_workers(self):
         # Create the worker
@@ -240,29 +216,25 @@ class RemoteControlTab(DeviceTab):
 
     def manual_remote_polling(self, enable_comms_state=False):    
         # Start up the remote value polling
-        if not self.polling:
-            self.statemachine_timeout_add(500, self.status_monitor)
-            self.statemachine_timeout_add(5000, self.check_remote_values) 
-            self.polling = True
-        else: 
-            if enable_comms_state:
-                self.statemachine_timeout_remove(self.check_remote_values_allowed)  
-                self.statemachine_timeout_add(5000, self.check_remote_values)  
-            else:
-                self.statemachine_timeout_remove(self.check_remote_values) 
-                # start up the remote value check which gracefully updates the FPV 
-                self.statemachine_timeout_add(500, self.check_remote_values_allowed)  
+        self.statemachine_timeout_add(500, self.status_monitor)
+        self.statemachine_timeout_add(5000, self.check_remote_values) 
+         
+        if enable_comms_state:
+            self.statemachine_timeout_remove(self.check_remote_values_allowed)  
+            self.statemachine_timeout_add(5000, self.check_remote_values)  
+        else:
+            self.statemachine_timeout_remove(self.check_remote_values) 
+            # start up the remote value check which gracefully updates the FPV 
+            self.statemachine_timeout_add(500, self.check_remote_values_allowed)  
 
     @define_state(MODE_MANUAL, True)
     def connect_to_remote(self):
         self.connected = yield(self.queue_work(self.primary_worker, 'connect_to_remote'))
-        with self.condition:
-            if self.connected:
-                self.condition.notify_all()
-                self.show_main_gui()    
-                self.manual_remote_polling()
-            else:
-                self.show_failed_connection()
+        if self.connected:
+            self.show_main_gui()    
+            self.manual_remote_polling()
+        else:
+            self.show_failed_connection()
 
     def show_failed_connection(self):
         with qtlock:
