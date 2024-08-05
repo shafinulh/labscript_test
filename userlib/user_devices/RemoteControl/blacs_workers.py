@@ -104,8 +104,8 @@ class RemoteCommunication:
             except zmq.ZMQError as e:
                 self.logger.error(f"Error during send/receive: {e}")
                 if e.errno == zmq.EAGAIN:
-                    # The server has been disconnected after having been established previously
                     if self.connected:
+                        # The server has been disconnected after having been established previously
                         raise Exception("The server has been disconnected. Please refresh tab")
                 else:
                     raise Exception(f"The remote communication has failed due to: {e}")
@@ -185,6 +185,9 @@ class RemoteControlWorker(Worker):
         Returns:
             dict: A dictionary of remote values.
         """
+        if not self.remote_comms.connected:
+            return
+
         remote_values = {}
         for connection in self.child_connections:
             response = self.remote_comms.check_remote_value(connection)
@@ -202,6 +205,9 @@ class RemoteControlWorker(Worker):
         Returns:
             dict: A dictionary of remote ouput values.
         """
+        if not self.remote_comms.connected:
+            return
+        
         def check_output_values():
             if len(self.child_output_connections) == 0:
                 return None
@@ -222,6 +228,9 @@ class RemoteControlWorker(Worker):
         `check_status` is a worker task for the `tab.state_monitor` function that is used to
         store the most up to date value of the Analog Monitors 
         """
+        if not self.remote_comms.connected:
+            return
+
         def check_monitor_values():
             responses = {}
             for connection in self.child_monitor_connections:
@@ -238,6 +247,9 @@ class RemoteControlWorker(Worker):
         pass
 
     def program_manual(self, front_panel_values):
+        if not self.remote_comms.connected:
+            return {}
+
         for connection in self.child_output_connections:
             response = self.remote_comms.program_value(connection, front_panel_values[connection])
             self.handle_response(response)
@@ -269,7 +281,7 @@ class RemoteControlWorker(Worker):
             # After buffered programming, get the values of all remote values before shot execution
             self.initial_monitor_values = self.check_all_remote_values()
 
-            return {} # indicates final values of buffered run, we have none
+            return {} # no buffered run final values to indicate
 
     def _save_monitor_values_to_hdf5(self, hdf5_file, group_name, monitor_values):
         if not monitor_values:
@@ -289,11 +301,8 @@ class RemoteControlWorker(Worker):
         group.create_dataset(f'{group_name}', data=static_value_table)
         
     def post_experiment(self):
-        if not self.remote_comms.connected:
-            return True
-        
         if self.initial_monitor_values:
-            self.final_monitor_values = self.check_status()
+            self.final_monitor_values = self.check_all_remote_values()
             # TODO: compare the buffered values with the current remote values at the end of the experiment.
             # if we have deviated too far, shot was unsuccessful and we need to requeue
 

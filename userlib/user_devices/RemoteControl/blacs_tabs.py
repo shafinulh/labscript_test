@@ -109,8 +109,6 @@ class RemoteControlTab(DeviceTab):
                 # throw an error
                 pass
 
-        AO_base_step = 0.01
-        
         # Remote Output Value Widgets
         AO_prop = {}
         for analog_out_device in self.child_output_devices:
@@ -210,8 +208,6 @@ class RemoteControlTab(DeviceTab):
             self.manual_remote_polling()
         else:
             self.connect_to_remote()
-            
-        self._can_check_remote_values = True
     
     # DEPRECATE
     def manual_remote_polling(self, enable_comms_state=False):    
@@ -244,6 +240,17 @@ class RemoteControlTab(DeviceTab):
         with qtlock:
             for widget in self.AO_widgets.values():
                 widget.setEnabled(not state)
+
+        if state:
+            # If checkbox toggled (no comms) we allow/expect remote values to change.
+            # Check them more frequently
+            self.statemachine_timeout_remove(self.check_remote_values)  
+            self.statemachine_timeout_add(500, self.check_remote_values_allowed)  
+        else:
+            # If checkbox toggled (comms we expect no mistmatch
+            # Check them less frequently
+            self.statemachine_timeout_remove(self.check_remote_values_allowed) 
+            self.statemachine_timeout_add(5000, self.check_remote_values)
 
         kwargs = {'enable_comms': not state}
         yield(self.queue_work(self.primary_worker, 'update_settings', **kwargs))
@@ -355,18 +362,23 @@ class RemoteControlTab(DeviceTab):
                 self.am_placeholder.hide()
                 self.comms_check_box.hide()
             else:
-                if self.reqrep_connected and self.pubsub_connected:
-                    # Fully connected
+                if self.reqrep_connected and self.pubsub_connected: # Fully connected
+                    # Check if remote setpoints differ from front panel values every 5 seconds
+                    self._can_check_remote_values = True
+                    self.statemachine_timeout_add(5000, self.check_remote_values) 
+                    
                     self.ao_placeholder.setCurrentWidget(self.ao_toolpalette_widget)
                     self.am_placeholder.setCurrentWidget(self.am_toolpalette_widget)
                     self.comms_check_box.show()
                 elif self.reqrep_connected:
-                    # Only req-rep connected
+                    # Check if remote setpoints differ from front panel values every 5 seconds
+                    self._can_check_remote_values = True
+                    self.statemachine_timeout_add(5000, self.check_remote_values) 
+                    
                     self.ao_placeholder.setCurrentWidget(self.ao_toolpalette_widget)
                     self.am_placeholder.setCurrentWidget(self.reconnect_pubsub_button)
                     self.comms_check_box.show()
                 elif self.pubsub_connected:
-                    # Only pub-sub connected
                     self.ao_placeholder.setCurrentWidget(self.reconnect_reqrep_button)
                     self.am_placeholder.setCurrentWidget(self.am_toolpalette_widget)
                     self.comms_check_box.hide()       
