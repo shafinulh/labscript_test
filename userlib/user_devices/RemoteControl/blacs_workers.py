@@ -307,20 +307,6 @@ class RemoteControlWorker(Worker):
         return True
     
     def transition_to_manual(self):
-        if not self.remote_comms.connected:
-            return True
-        # if self.initial_monitor_values:
-        #     self.final_monitor_values = self.check_status()
-        #     # TODO: compare the buffered values with the current remote values at the end of the experiment.
-        #     # if we have deviated too far, shot was unsuccessful and we need to requeue
-
-        #     # Modify the connection names to be stored in the h5 and put into a single list
-        #     with h5py.File(self.h5_filepath, 'a') as hdf5_file:
-        #         self._save_monitor_values_to_hdf5(hdf5_file, 'initial_monitor_values', self.initial_monitor_values)
-        #         self._save_monitor_values_to_hdf5(hdf5_file, 'final_monitor_values', self.final_monitor_values)
-
-        # self.initial_monitor_values = {}
-        # self.final_monitor_values = {}
         return True
 
     def abort_transition_to_buffered(self):

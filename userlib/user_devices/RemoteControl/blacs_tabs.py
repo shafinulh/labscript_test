@@ -90,7 +90,7 @@ class RemoteControlTab(DeviceTab):
         self.host = self.properties['host']
         self.port = self.properties['port']
 
-        self.connected = False
+        self.reqrep_connected = False
         self.pubsub_connected = False
 
         self.child_output_devices = []
@@ -204,7 +204,7 @@ class RemoteControlTab(DeviceTab):
         self.primary_worker = "main_worker"
 
         if self.mock:
-            self.connected = True
+            self.reqrep_connected = True
             self.manual_remote_polling()
         else:
             self.connect_to_remote()
@@ -234,17 +234,14 @@ class RemoteControlTab(DeviceTab):
             self.queue_work(self.primary_worker, "check_status")
         )
         for connection, value in response.items():
-            # with qtlock:
             self._AO[connection].set_value(float(value), program=False, update_gui=True)
         return response
     
     @define_state(MODE_MANUAL, True)
     def on_checkbox_toggled(self, state):
         with qtlock:
-            for _, widget in self.AO_widgets.items():
+            for widget in self.AO_widgets.values():
                 widget.setEnabled(not state)
-        
-        self.manual_remote_polling(state)
 
         kwargs = {'enable_comms': not state}
         yield(self.queue_work(self.primary_worker, 'update_settings', **kwargs))
@@ -263,7 +260,7 @@ class RemoteControlTab(DeviceTab):
 
     @define_state(MODE_MANUAL, True)
     def connect_to_reqrep(self):
-        self.connected = yield(self.queue_work(self.primary_worker, 'connect_to_remote'))
+        self.reqrep_connected = yield(self.queue_work(self.primary_worker, 'connect_to_remote'))
         self.update_gui_status()
 
     def connect_to_pubsub(self):
@@ -344,12 +341,11 @@ class RemoteControlTab(DeviceTab):
     
     def update_gui_with_message(self, connection, value):
         if connection in self.AM_widgets:
-            with qtlock:
-                self._AO[connection].set_value(float(value), program=False)
+            self._AO[connection].set_value(float(value), program=False)
 
     def update_gui_status(self):
         with qtlock:
-            if not (self.connected or self.pubsub_connected):
+            if not (self.reqrep_connected or self.pubsub_connected):
                 # No connection
                 self.failed_button.show()
 
@@ -357,12 +353,12 @@ class RemoteControlTab(DeviceTab):
                 self.am_placeholder.hide()
                 self.comms_check_box.hide()
             else:
-                if self.connected and self.pubsub_connected:
+                if self.reqrep_connected and self.pubsub_connected:
                     # Fully connected
                     self.ao_placeholder.setCurrentWidget(self.ao_toolpalette_widget)
                     self.am_placeholder.setCurrentWidget(self.am_toolpalette_widget)
                     self.comms_check_box.show()
-                elif self.connected:
+                elif self.reqrep_connected:
                     # Only req-rep connected
                     self.ao_placeholder.setCurrentWidget(self.ao_toolpalette_widget)
                     self.am_placeholder.setCurrentWidget(self.reconnect_pubsub_button)
