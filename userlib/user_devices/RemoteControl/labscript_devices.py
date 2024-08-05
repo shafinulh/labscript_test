@@ -35,6 +35,7 @@ class RemoteAnalogOut(StaticAnalogQuantity): # More appropriately named RemoteOu
                 "units",
                 "limits",
                 "decimals",
+                "step_size",
             ],
             "device_properties": [],
         }
@@ -47,11 +48,12 @@ class RemoteAnalogOut(StaticAnalogQuantity): # More appropriately named RemoteOu
         units="V",
         limits=(0,np.inf),
         decimals=3,
+        step_size=0.01,
         **kwargs
     ):
         """
         - the properties of the values you want to RECEIVE 
-        Args:
+    Args:
             name (str): name to assign the created labscript device
             parent_device (str): The RemoteTab device this is connected to
             connection (str): this is the identifier of the value to be used by the remote program
@@ -69,12 +71,13 @@ class RemoteAnalogOut(StaticAnalogQuantity): # More appropriately named RemoteOu
             name, 
             parent_device, 
             connection, 
+            limits=limits,
             **kwargs
         )
     
     def constant(self, value, units=None):
         self._value_set = True
-        return super().foo(value, units=None)
+        return super().constant(value, units=None)
 
     def value_set(self):
         return self._value_set
@@ -87,6 +90,7 @@ class RemoteAnalogMonitor(StaticAnalogQuantity): # More appropriately named Remo
                 "units",
                 "limits",
                 "decimals",
+                "step_size",
             ],
             "device_properties": [],
         }
@@ -99,6 +103,7 @@ class RemoteAnalogMonitor(StaticAnalogQuantity): # More appropriately named Remo
         units="V",
         limits=(0,np.inf),
         decimals=3, 
+        step_size=0.01,
         **kwargs
     ):
         """
@@ -117,7 +122,8 @@ class RemoteAnalogMonitor(StaticAnalogQuantity): # More appropriately named Remo
             self, 
             name, 
             parent_device, 
-            connection, 
+            connection,
+            limits=limits,
             **kwargs
         )
 """
@@ -134,7 +140,7 @@ class RemoteControl(Device):
     @set_passed_properties(
         property_names={
             "connection_table_properties": [
-                "ip_address",
+                "host",
                 "port",
                 "mock",
             ],
@@ -144,7 +150,7 @@ class RemoteControl(Device):
     def __init__(
         self, 
         name,
-        ip_address="",
+        host="",
         port=None,
         mock=True, 
         **kwargs
@@ -157,15 +163,15 @@ class RemoteControl(Device):
 
         Args:
             name (str):
-            ip_address (str, optional): don't need to specify if in mock mode
+            host (str, optional): don't need to specify if in mock mode
             port (int, optional) don't need to specify is in mock mode
             mock (bool, optional): 
         """
         # TODO: figure out why no other BLACS_connection works besides dummy_connection
         self.BLACS_connection = "dummy_connection"
 
-        if not mock and (ip_address=="" or port==None):
-            raise Exception("Must specify the ip_address and port of the remote software.")
+        if not mock and (host=="" or port==None):
+            raise Exception("Must specify the host and port of the remote software.")
 
         Device.__init__(self, name, None, None, **kwargs)
 

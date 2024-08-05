@@ -115,11 +115,12 @@ class RemoteControlTab(DeviceTab):
         AO_prop = {}
         for analog_out_device in self.child_output_devices:
             child_properties = analog_out_device._properties
+            min_val, max_val = child_properties["limits"]
             AO_prop[analog_out_device.parent_port] = {
                 'base_unit': child_properties["units"],
-                'min': 0,
-                'max': 1000,
-                'step': AO_base_step,
+                'min': min_val,
+                'max': max_val,
+                'step': child_properties["step_size"],
                 'decimals': child_properties["decimals"],
             }
         self.create_analog_outputs(AO_prop)
@@ -130,11 +131,12 @@ class RemoteControlTab(DeviceTab):
         AM_prop = {}
         for analog_monitor_device in self.child_monitor_devices:
             child_properties = analog_monitor_device._properties
+            min_val, max_val = child_properties["limits"]
             AM_prop[analog_monitor_device.parent_port] = {
                 'base_unit': child_properties["units"],
-                'min': 0,
-                'max': 1000,
-                'step': AO_base_step,
+                'min': min_val,
+                'max': max_val,
+                'step': child_properties["step_size"],
                 'decimals': child_properties["decimals"],
             }
         self.create_analog_outputs(AM_prop)
@@ -341,7 +343,7 @@ class RemoteControlTab(DeviceTab):
     
     def update_gui_with_message(self, connection, value):
         if connection in self.AM_widgets:
-            self._AO[connection].set_value(float(value), program=False)
+                self._AO[connection].set_value(float(value), program=False)
 
     def update_gui_status(self):
         with qtlock:

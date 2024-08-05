@@ -20,7 +20,8 @@ RemoteAnalogOut(
     parent_device=LaserRasterGUI, 
     connection='laser_raster_x_coord',
     units="mm",
-    decimals=3
+    decimals=3,
+    limits=(0, 1)
 )
 RemoteAnalogOut(
     name='Laser_Y_Control', 
