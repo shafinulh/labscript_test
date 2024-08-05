@@ -42,7 +42,6 @@ TODO:
     then it will wake up the GUI to make a change
 
 """
-
 class RemoteCommunication:
     """
     A class for handling remote communication with a device.
@@ -94,7 +93,7 @@ class RemoteCommunication:
             self.host = host
             self.port = port
     
-    def connect_to_remote(self, timeout=1000):  # timeout in milliseconds
+    def connect_to_remote(self, timeout=1000):
         self.socket = self.context.socket(zmq.REQ)
         self.socket.connect(f"tcp://{self.host}:{self.port}")
         
@@ -111,7 +110,7 @@ class RemoteCommunication:
             self.socket.close()
             self.connected = False
         else:
-            self.logger.debug(f"SET UP CONNECTION. GOT RESPONSE {response}")
+            self.logger.debug(f"Connection Successful. Got response {response}")
             self.connected = True
         
         return self.connected
@@ -146,10 +145,6 @@ class RemoteCommunication:
     def program_value(self, connection, value):
         message = {"action": "PROGRAM_VALUE", "connection": connection, "value": value}
         self.logger.debug(f"programming value with message: {message}")
-        return self.send_request(message)
-    
-    def check_moving_status(self, connection):
-        message = {"action": "CHECK_MONITOR", "connection": connection}
         return self.send_request(message)
 
     def check_remote_value(self, connection):
@@ -191,7 +186,7 @@ class RemoteControlWorker(Worker):
         self.child_connections = self.child_output_connections + self.child_monitor_connections
 
         self.remote_comms = RemoteCommunication(
-            host=self.ip_address, 
+            host=self.host, 
             port=self.port, 
             logger=self.logger, 
             child_connections=self.child_connections, 
@@ -251,6 +246,7 @@ class RemoteControlWorker(Worker):
         
         return check_output_values()
     
+    # DEPRECATE check_status and add check_monitor_values()
     def check_status(self):
         """
         Checks the remote values of the child MONITOR connections.
@@ -261,7 +257,7 @@ class RemoteControlWorker(Worker):
         def check_monitor_values():
             responses = {}
             for connection in self.child_monitor_connections:
-                response = self.remote_comms.check_moving_status(connection)
+                response = self.remote_comms.check_remote_value(connection)
                 self.handle_response(response)
                 self.logger.debug(f"recieved response {response}")
                 responses[connection] = float(response["value"])
@@ -277,17 +273,17 @@ class RemoteControlWorker(Worker):
         for connection in self.child_output_connections:
             response = self.remote_comms.program_value(connection, front_panel_values[connection])
             self.handle_response(response)
-        # After successfully programming device with manual values, retrieve the current remote
-        # values such that the front panel will reflect the most up-to-date device values
-        return self.check_all_remote_values()
+        # No need to return values to coerce front_panel_values since any changes to remote values
+        # will be communicated through asynchronous PUB-SUB communication
+        return {}
 
     def transition_to_buffered(self, device_name, h5_filepath, front_panel_values, fresh):
         if not self.enable_comms:
-            return self.check_all_remote_values()
+            return {}
         with h5py.File(h5_filepath, 'r') as f:
             group = f['devices'][self.device_name]
             if not 'remote_device_operation' in group:
-                return self.check_all_remote_values()
+                return {}
 
             if not self.remote_comms.connected:
                 raise Exception("""Cannot program remote device when remote connection is not established\n
@@ -298,15 +294,14 @@ class RemoteControlWorker(Worker):
             table = group['remote_device_operation'][:]
             
             for connection in table.dtype.names:
-                # must cast `np.float32` to `float` to pass in JSON object
-                value = float(table[0][connection])
+                value = float(table[0][connection]) # must cast `np.float32` to `float` to pass in JSON object
                 response = self.remote_comms.program_value(connection, value)
                 self.handle_response(response)
 
-            # After buffered programming, get the values of any Monitors before shot execution
+            # After buffered programming, get the values of all remote values before shot execution
             self.initial_monitor_values = self.check_all_remote_values()
 
-            return self.initial_monitor_values
+            return {} # indicates final values of buffered run, we have none
 
     def _save_monitor_values_to_hdf5(self, hdf5_file, group_name, monitor_values):
         if not monitor_values:
@@ -319,9 +314,9 @@ class RemoteControlWorker(Worker):
             static_value_table[connection] = value
 
         try:
-            group = hdf5_file['/data/monitor_values']
+            group = hdf5_file[f'/data/{self.device_name}/monitor_values']
         except KeyError:
-            group = hdf5_file.create_group('/data/monitor_values')
+            group = hdf5_file.create_group(f'/data/{self.device_name}/monitor_values')
         
         group.create_dataset(f'{group_name}', data=static_value_table)
         
