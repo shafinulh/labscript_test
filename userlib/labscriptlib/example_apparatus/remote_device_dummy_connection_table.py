@@ -13,7 +13,7 @@ DummyPseudoclock(name='pseudoclock')
 DummyIntermediateDevice(name='intermediate_device', parent_device=pseudoclock.clockline)
 
 # Remote Operation of Laser Raster GUI
-RemoteControl(name='LaserRasterGUI', host="10.0.0.180", port=55535, mock=False) # add IP address and Port of the host software
+RemoteControl(name='LaserRasterGUI', host="10.0.0.180", reqrep_port=55535, pubsub_port=55536, mock=False) # add IP address and Port of the host software
 
 RemoteAnalogOut(
     name='Laser_X_Control', 

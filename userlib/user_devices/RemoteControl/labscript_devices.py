@@ -141,7 +141,8 @@ class RemoteControl(Device):
         property_names={
             "connection_table_properties": [
                 "host",
-                "port",
+                "reqrep_port",
+                "pubsub_port",
                 "mock",
             ],
             "device_properties": [],
@@ -151,7 +152,8 @@ class RemoteControl(Device):
         self, 
         name,
         host="",
-        port=None,
+        reqrep_port=None,
+        pubsub_port=None,
         mock=True, 
         **kwargs
     ):
@@ -164,13 +166,14 @@ class RemoteControl(Device):
         Args:
             name (str):
             host (str, optional): don't need to specify if in mock mode
-            port (int, optional) don't need to specify is in mock mode
+            reqrep_port (int, optional) don't need to specify is in mock mode
+            pubsub_port (int, optional) don't need to specify is in mock mode
             mock (bool, optional): 
         """
         # TODO: figure out why no other BLACS_connection works besides dummy_connection
         self.BLACS_connection = "dummy_connection"
 
-        if not mock and (host=="" or port==None):
+        if (not mock) and (host=="" or (reqrep_port==None and pubsub_port==None)):
             raise Exception("Must specify the host and port of the remote software.")
 
         Device.__init__(self, name, None, None, **kwargs)

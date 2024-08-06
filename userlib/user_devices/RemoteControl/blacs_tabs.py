@@ -88,7 +88,8 @@ class RemoteControlTab(DeviceTab):
 
         self.mock = self.properties['mock']
         self.host = self.properties['host']
-        self.port = self.properties['port']
+        self.reqrep_port = self.properties['reqrep_port']
+        self.pubsub_port = self.properties['pubsub_port']
 
         self.reqrep_connected = False
         self.pubsub_connected = False
@@ -196,7 +197,7 @@ class RemoteControlTab(DeviceTab):
             {
                 "mock": self.mock,
                 "host": self.host,
-                "port": self.port,
+                "port": self.reqrep_port,
                 "child_output_connections": self.child_output_connections,
                 "child_monitor_connections": self.child_monitor_connections,
             }
@@ -280,7 +281,7 @@ class RemoteControlTab(DeviceTab):
     def heartbeat_subscriber(self):
         context = zmq.Context()
         socket = context.socket(zmq.SUB)
-        socket.connect(f"tcp://{self.host}:{self.port + 1}")
+        socket.connect(f"tcp://{self.host}:{self.pubsub_port}")
         socket.setsockopt_string(zmq.SUBSCRIBE, "heartbeat")
 
         poller = zmq.Poller()
@@ -325,7 +326,7 @@ class RemoteControlTab(DeviceTab):
         try:
             for connection in self.child_monitor_connections:
                 subscriber = context.socket(zmq.SUB)
-                subscriber.connect(f"tcp://{self.host}:{self.port + 1}")
+                subscriber.connect(f"tcp://{self.host}:{self.pubsub_port}")
                 subscriber.setsockopt_string(zmq.SUBSCRIBE, connection)
                 subscribers[connection] = subscriber
                 poller.register(subscriber, zmq.POLLIN)

@@ -42,7 +42,7 @@ AnalogIn(name="ai0", parent_device=ni_6363, connection='ai0')
 AnalogIn(name="ai1", parent_device=ni_6363, connection='ai1')
 
 # # Remote Operation of Laser Raster GUI
-RemoteControl(name='LaserLockGUI', host="localhost", port=55535, mock=False) # add IP address and Port of the host software
+RemoteControl(name='LaserLockGUI', host="localhost", reqrep_port=55535, pubsub_port=55536, mock=False) # add IP address and Port of the host software
 
 RemoteAnalogOut(
     name='cwave_generator_setpoints', 
