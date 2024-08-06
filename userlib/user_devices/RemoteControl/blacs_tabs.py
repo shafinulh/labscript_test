@@ -145,13 +145,13 @@ class RemoteControlTab(DeviceTab):
         for _, widget in self.AM_widgets.items():
             widget.setEnabled(False)
 
-        # Create connectivity buttons
-        self.reconnect_reqrep_button = QtWidgets.QPushButton("Click Here to Reconnect\nin order to send values")
+        # Connectivity buttons
+        self.reconnect_reqrep_button = QtWidgets.QPushButton("Click Here to Reconnect\nREQ-REP socket")
         self.reconnect_reqrep_button.setStyleSheet("background-color: #ffcccc;")
         self.reconnect_reqrep_button.clicked.connect(self.reconnect_reqrep)
         self.reconnect_reqrep_button.hide()
 
-        self.reconnect_pubsub_button = QtWidgets.QPushButton("Pub-Sub not connected,\nvalues cannot be monitored.\nClick Here to Reconnect")
+        self.reconnect_pubsub_button = QtWidgets.QPushButton("Click Here to Reconnect\nPUB-SUB socket")
         self.reconnect_pubsub_button.setStyleSheet("background-color: #ffcccc;")
         self.reconnect_pubsub_button.clicked.connect(self.reconnect_pubsub)
         self.reconnect_pubsub_button.hide()
