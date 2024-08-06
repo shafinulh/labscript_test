@@ -241,16 +241,15 @@ class RemoteControlTab(DeviceTab):
             for widget in self.AO_widgets.values():
                 widget.setEnabled(not state)
 
+        self.statemachine_timeout_remove(self.check_remote_values)  
         if state:
             # If checkbox toggled (no comms) we allow/expect remote values to change.
             # Check them more frequently
-            self.statemachine_timeout_remove(self.check_remote_values)  
-            self.statemachine_timeout_add(500, self.check_remote_values_allowed)  
+            self.statemachine_timeout_add(500, self.check_remote_values, True)  
         else:
             # If checkbox toggled (comms we expect no mistmatch
             # Check them less frequently
-            self.statemachine_timeout_remove(self.check_remote_values_allowed) 
-            self.statemachine_timeout_add(5000, self.check_remote_values)
+            self.statemachine_timeout_add(5000, self.check_remote_values, False)
 
         kwargs = {'enable_comms': not state}
         yield(self.queue_work(self.primary_worker, 'update_settings', **kwargs))
