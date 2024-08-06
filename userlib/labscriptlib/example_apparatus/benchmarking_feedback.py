@@ -117,7 +117,7 @@ def analog_output_exp_ramp():
 def collect_AO_0():
     t=ramp_ti
     t+=ai0.acquire(label='AO_ramp', start_time=t, end_time=ramp_tf)
-    
+
     t+= 10e-3
     ai0.acquire(label='dummy_measurement_AO_0_fast', start_time=t, end_time=t+3e-3)
     t+=3e-3
@@ -125,7 +125,7 @@ def collect_AO_0():
 def collect_AO_1():
     t=exp_ramp_ti
     t+=ai1.acquire(label='AI_signal', start_time=t, end_time=exp_ramp_tf)
-    
+
     t=45e-3
     ai1.acquire(label='dummy_measurement_AO_1_fast', start_time=t, end_time=t+3e-3)
     t+=3e-3
@@ -153,4 +153,3 @@ t=max(t, collect_AO_1())
 t=max(t, collect_dummy_inputs())
 print(t)
 stop(t)
-
